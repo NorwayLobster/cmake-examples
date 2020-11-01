@@ -7,17 +7,30 @@ cmake_minimum_required(VERSION 3.5)
 project (hello_headers)
 
 # Create a sources variable with a link to all cpp files to compile
-set(SOURCES
-    src/Hello.cpp
-    src/main.cpp
-)
+
+#set(SOURCES
+#    src/Hello.cpp
+#    src/main.cpp
+#)
+
+file(GLOB SOURCES "src/*.cpp")
 
 # Add an executable with the above sources
-add_executable(hello_headers ${SOURCES})
+#add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} src/Hello.cpp src/main.cpp)
+
+#add_executable(${PROJECT_NAME} src/*.cpp) wrong
+
+#wrong
+#add_executable(${PROJECT_NAME} src/main.cpp)
+#add_executable(${PROJECT_NAME} src/Hello.cpp)
+
+#add_executable(hello_headers ${SOURCES})
 
 # Set the directories that should be included in the build command for this target
 # when running g++ these will be included as -I/directory/path/
-target_include_directories(hello_headers
+#target_include_directories(hello_headers
+target_include_directories(${PROJECT_NAME}
     PRIVATE 
         ${PROJECT_SOURCE_DIR}/include
 )

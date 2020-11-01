@@ -6,12 +6,19 @@ project (third_party_include)
 
 # find a boost install with the libraries filesystem and system
 find_package(Boost 1.46.1 REQUIRED COMPONENTS filesystem system)
+find_package(GTest 1.10.0 REQUIRED)
 
 # check if boost was found
 if(Boost_FOUND)
     message ("boost found")
 else()
     message (FATAL_ERROR "Cannot find Boost")
+endif()
+
+if(GTest_FOUND)
+    message ("gtest found")
+else()
+    message (FATAL_ERROR "Cannot find gtest")
 endif()
 
 # Add an executable
