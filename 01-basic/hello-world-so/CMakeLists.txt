@@ -9,6 +9,7 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DEX2" CACHE STRING "Set C++ Compiler F
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+
 # check results and add flag
 if(COMPILER_SUPPORTS_CXX11)#
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -32,29 +33,41 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     "MinSizeRel" "RelWithDebInfo")
 endif()
 
+
+
+
+
+
+
+
+
+
 # find a boost install with the libraries filesystem and system
 find_package(Boost 1.46.1 REQUIRED COMPONENTS filesystem system)
 
 # check if boost was found
-#if(Boost_FOUND)
-#    message ("boost found")
-#else()
-#    message (FATAL_ERROR "Cannot find Boost")
-#endif()
+if(Boost_FOUND)
+    message ("boost found")
+else()
+    message (FATAL_ERROR "Cannot find Boost")
+endif()
 
-#dynamic library
+
+
+#create a dynamic library
 add_library(HelloWorld SHARED src/HelloWorld.cc)
+# add an alias for it 
 add_library(hello::library ALIAS HelloWorld)
 
 target_include_directories(HelloWorld 
 	PUBLIC
 	${PROJECT_SOURCE_DIR}/include
-	#	${PROJECT_SOURCE_DIR}/include/
+	#	${PROJECT_SOURCE_DIR}/include/   #note here
 )
 
 
 
-# Add an executable
+# create an executable
 add_executable(${PROJECT_NAME} src/main.cc)
 
 target_compile_definitions(${PROJECT_NAME}
