@@ -8,24 +8,28 @@ project (hello_headers)
 
 # Create a sources variable with a link to all cpp files to compile
 
-#set(SOURCES
-#    src/Hello.cpp
-#    src/main.cpp
-#)
+#v1
+set(SOURCES
+    src/Hello.cpp
+    src/main.cpp
+)
+add_executable(${PROJECT_NAME} ${SOURCES})
+#add_executable(hello_headers ${SOURCES})
 
-file(GLOB SOURCES "src/*.cpp")
-
-# Add an executable with the above sources
+#v2
+#file(GLOB SOURCES "src/*.cpp")
 #add_executable(${PROJECT_NAME} ${SOURCES})
-add_executable(${PROJECT_NAME} src/Hello.cpp src/main.cpp)
+
+#v3
+# Add an executable with the above sources
+#add_executable(${PROJECT_NAME} src/Hello.cpp src/main.cpp)
+
 
 #add_executable(${PROJECT_NAME} src/*.cpp) wrong
-
 #wrong
 #add_executable(${PROJECT_NAME} src/main.cpp)
 #add_executable(${PROJECT_NAME} src/Hello.cpp)
 
-#add_executable(hello_headers ${SOURCES})
 
 # Set the directories that should be included in the build command for this target
 # when running g++ these will be included as -I/directory/path/

@@ -29,7 +29,7 @@ target_include_directories(cmake_examples_inst
 add_executable(cmake_examples_inst_bin
     src/main.cpp
 )
-
+#创建可执行文件时，需要链接动态库，链接动态库不需要头文件吗？？
 # link the new hello_library target with the hello_binary target
 target_link_libraries( cmake_examples_inst_bin
     PRIVATE 

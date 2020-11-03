@@ -22,9 +22,7 @@ target_include_directories(hello_library
 ############################################################
 
 # Add an executable with the above sources
-add_executable(hello_binary 
-    src/main.cpp
-)
+add_executable(hello_binary src/main.cpp)
 
 # link the new hello_library target with the hello_binary target
 target_link_libraries( hello_binary
